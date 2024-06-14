@@ -14,6 +14,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 
 if ($method === 'GET') {
+
+
+
     include 'task.php';
     $res = $task->get_all_task();
     if ($res->num_rows == 0) {
@@ -22,7 +25,7 @@ if ($method === 'GET') {
             'message' => 'No Todos Found',
         ];
         header("HTTP/1.0 404 No Todos");
-        echo $data;
+        echo json_encode($data);
     } else {
         $todos = mysqli_fetch_all($res, MYSQLI_ASSOC);
         $data = [
@@ -62,7 +65,10 @@ else if($method === 'POST'){
 else if($method === 'PUT'){
     include 'task.php';
 
-    if(!isset($_PUT['status'] , $_POST['id'] , $_POST['title'])){
+    parse_str(file_get_contents("php://input"),$userInput);
+
+
+    if(!isset($userInput['status'] , $userInput['id'] , $userInput['title'])){
         $data = [
             'status' => 404,
             'message' => 'Form Not Valid !',
@@ -71,7 +77,7 @@ else if($method === 'PUT'){
         echo json_encode($data);
         }
         else{
-            $result =  $task->update_task($_POST['id'], $_POST['title'], $_POST['status']);
+            $result =  $task->update_task($userInput['id'], $userInput['title'], $userInput['status']);
             $data = [
             'status' => 201,
             'message' => 'Todo Updated',
@@ -85,7 +91,8 @@ else if($method === 'PUT'){
 
 else if($method === 'DELETE'){
 
-    if (!isset($_DELETE['id'])){
+    include 'task.php';
+    if (!isset($_GET['id'])){
         $data = [
             'status' => 404,
             'message' => 'Invalid ID !',
@@ -94,13 +101,14 @@ else if($method === 'DELETE'){
         echo json_encode($data);
         }
         else{
-            $result =  $task->delete_task_by_id($_POST['id']);
+            $result =  $task->delete_task_by_id($_GET['id']);
             $data = [
             'status' => 201,
             'message' => 'Todo Deleted',
         ];
             echo json_encode($data);
             header("HTTP/1.0 200 Deleted Successfull");
+            exit;
             
     }
 }

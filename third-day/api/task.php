@@ -9,8 +9,7 @@ class Task
     private $title;
     private $status;
 
-
-
+    
 
     function create_task($title, $status)
     {
