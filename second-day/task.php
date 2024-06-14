@@ -2,68 +2,66 @@
 <?php
 
 
-include_once 'db.php';
+include_once 'TodoDb.php';
 class Task
 {
-
+    
     public $url = "index.php";
-    private $title;
-    private $status;
-
-
-
 
     function create_task($title, $status)
     {
         global $conn;
-        echo $title ."from db";
         $qry = "INSERT INTO tasks values (NULL, '$title', '$status')";
-        $res = mysqli_query($conn, $qry);
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
     }
 
 
     function update_task($id, $title, $status)
     {
         global $conn;
-        $qry = "UPDATE  tasks set title='$title', status='$status' where id='$id'";
-        $res = mysqli_query($conn, $qry);
-
-        return $res;
+        $qry = "UPDATE  tasks set title='$title', status='$status' where id=$id";
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
     }
 
     function get_all_task()
     {
         global $conn;
         $qry = "SELECT * FROM tasks ORDER BY id DESC";
-        $res = mysqli_query($conn, $qry);
+        $stmt = $conn->prepare($qry);
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
+        return $stmt;
 
-        return $res;
+
     }
 
 
     function get_task_by_id($id)
     {
         global $conn;
-        $qry = "SELECT * FROM tasks where id='$id';";
-        $res = mysqli_query($conn, $qry);
-        return $res;
+        $qry = "SELECT * FROM tasks where id=$id;";
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
+        return $stmt;
     }
 
     function delete_task_by_id($id)
     {
+        echo $id;
         global $conn;
-        $qry = "DELETE from tasks where id='$id'";
-        $res = mysqli_query($conn, $qry);
-        return $res;    
+        $qry = "DELETE from tasks where id=$id";
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
     }
 
     function delete_all_task()
     {
         global $conn;
         $qry = "TRUNCATE table tasks";
-        if ($qry) {
-            echo 'Successfully deleted all tasks';
-        }
+        $stmt =$conn->prepare($qry);
+        $stmt->execute();
 
     }
 }
@@ -71,6 +69,3 @@ class Task
 
 
 $task = new Task();
-
-
-?>

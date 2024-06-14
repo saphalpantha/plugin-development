@@ -6,7 +6,4 @@
 
     $task->delete_task_by_id($user_id);
 
-    header('location:index.php');
-    
-
-?>
+    header("location: {$task->url}");

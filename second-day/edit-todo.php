@@ -20,7 +20,7 @@
         } 
         
         $response = $task->get_task_by_id($id);
-        $row = mysqli_fetch_assoc($response);
+        $row = $response->fetch(PDO::FETCH_ASSOC);
 
     ?>
 
@@ -35,9 +35,9 @@
             <input name="id" type="hidden" value="<?php  echo isset( $row['id']) ?  $row['id'] : ''; ?>"  />
             </div>
 
-            <select name="status" value="<?php echo isset( $row['status']) ?  $row['status'] : ''; ?>">
-                <option value="pending">pending </option>
-                <option value="completed">Completed </option>
+            <select name="status">
+                <option value="pending" <?php echo isset($row['status']) ?  ($row['status'] === 'pending')  ? 'selected' : '' : '' ?>>Pending</option>
+                <option value="completed" <?php echo isset($row['status']) ?  ($row['status'] === 'completed')  ? 'selected' : '' : '' ?>>Completed</option>
                 </select>
                 <button type="submit">Add</button>
 
@@ -54,7 +54,7 @@
                 $id = $_POST['id'];
                 $result = $task->update_task($id, $updated_title , $updated_status);
 
-                header('location:index.php');
+                header("location:{$task->url}");
                 
             }
             

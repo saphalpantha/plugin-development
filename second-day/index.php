@@ -26,18 +26,15 @@
     
         include_once 'task.php';
 
-        $qry = "SELECT * FROM tasks";
         $result = $task->get_all_task();
-        
-
-        if($result->num_rows === 0){
+        if($result->rowCount() < 0){
             ?>
             <h2>NO Todos </h2>
             <?php
 
         }
         else {
-           while($row  = mysqli_fetch_assoc($result)){
+           while($row  = $result->fetch(PDO::FETCH_ASSOC)){
             ?>
 
             <div class="card-lists">
