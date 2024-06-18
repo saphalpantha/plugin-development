@@ -1,0 +1,42 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    padding: 5rem 0rem;
+    background: #141013;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+}
+
+.todo-list{
+    overflow-y: scroll;
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+
+
+.todo-main form {
+    display: flex;
+    gap: 1rem;
+    
+    width: 600px;
+}
+
+
+form input{
+    width: 100%;
+    height: 2rem;
+    
+} 
+
+form button{
+    width: fit-content;
+
+    padding: 0.2rem 2rem;
+    
+} 
