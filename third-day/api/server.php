@@ -12,8 +12,9 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 
 
-
 $method = $_SERVER['REQUEST_METHOD'];
+
+
 
 
 
@@ -21,6 +22,7 @@ if ($method == 'OPTIONS') {
     http_response_code(200);
     exit();
 }
+
 
 
 if ($method === 'GET') {
@@ -92,7 +94,7 @@ if ($method === 'GET') {
     }
 } else if ($method === 'PUT') {
     include 'task.php';
-
+    
     $user_input = file_get_contents("php://input");
     $user_input = json_decode($user_input, true);
     if (!isset($user_input['status'], $user_input['id'], $user_input['title'])) {
