@@ -1,0 +1,15 @@
+{
+    "name": "kiit/final-user-reg",
+    "autoload": {
+        "psr-4": {
+            "Test\\Test1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "saphalpantha",
+            "email": "saphalpantha@gmail.com"
+        }
+    ],
+    "require": {}
+}
