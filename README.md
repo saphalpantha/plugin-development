@@ -14,14 +14,14 @@ This repository contains multiple **WordPress plugin development exercises** dem
 
 ### Project Structure
 
-/first-day # Simple TODO app
-/second-day # PDO-based TODO app
-/fouth-day # User registration plugin with hooks and mail
-/fivth-day/test-shortcode # Shortcode examples
-/tenth-day/custom-post-plugin # Custom post type plugin
-/eight-day/rest-api # REST API plugin examples
-/eleven-day/final-user-reg # AJAX user registration plugin
-/twelve-day/final-user-reg_extra # Class-based registration plugin
+- **first-day** – Simple TODO app  
+- **second-day** – PDO-based TODO app  
+- **fouth-day** – User registration plugin with hooks and WP Mail  
+- **fivth-day/test-shortcode** – Shortcode examples  
+- **tenth-day/custom-post-plugin** – Custom post type plugin  
+- **eight-day/rest-api** – REST API plugin examples  
+- **eleven-day/final-user-reg** – AJAX-based user registration plugin  
+- **twelve-day/final-user-reg_extra** – Fully functional class-based user registration plugin
 
 
 ### Notes
@@ -29,5 +29,6 @@ This repository contains multiple **WordPress plugin development exercises** dem
 - Ideal for learning **WordPress plugin development** and PHP-React integration.  
 - Each folder represents a separate day/project demonstrating a specific plugin concept.  
 - Includes practical examples for REST APIs, shortcodes, user authentication, and form handling.
+
 
 
